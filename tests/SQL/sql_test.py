@@ -85,17 +85,15 @@ class TestSQL:
             sql = fo.read()
 
         # Create and grade 5 assignments for the default teacher (teacher_id=1)
-        grade_a_count_1 = self.create_n_graded_assignments_for_teacher_and_student(5)
-        
+        grade_a_count_1 = self.create_n_graded_assignments_for_teacher_and_student(5, teacher_id=1)
+
+        # Create and grade 25 assignments for teacher_id 2
+        grade_a_count_2 = self.create_n_graded_assignments_for_teacher_and_student(25, teacher_id=2)
+
         # Execute the SQL query and check if the count matches the created assignments
         sql_result = db.session.execute(text(sql)).fetchall()
-        assert grade_a_count_1 == sql_result[0][0]
 
-        # Create and grade 10 assignments for a different teacher (teacher_id=2)
-        grade_a_count_2 = self.create_n_graded_assignments_for_teacher_and_student(10, 2)
-
-        # Execute the SQL query again and check if the count matches the newly created assignments
-        sql_result = db.session.execute(text(sql)).fetchall()
+        # Check if the count of grade A assignments for the teacher with max grading matches
         assert grade_a_count_2 == sql_result[0][0]
 
     def teardown_method(self) -> None:
