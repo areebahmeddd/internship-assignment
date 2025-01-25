@@ -1,0 +1,37 @@
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore virtual environment directories
+env/
+venv/
+
+# Ignore SQLite database files
+*.db
+*.sqlite3
+core/store.sqlite3
+
+# Ignore test files and directories
+tests/
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Ignore markdown files
+README.md
+Application.md
+
+# Ignore IDE and editor config files
+.idea/
+.vscode/
+
+# Ignore other unnecessary files
+*.log
+*.pot
+*.mo
+*.pyd
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
