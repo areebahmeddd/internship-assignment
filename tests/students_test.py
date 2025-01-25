@@ -58,11 +58,23 @@ def test_post_assignment_student_1(client, h_student_1):
 
 
 def test_submit_assignment_student_1(client, h_student_1):
+    # Create an assignment (DRAFT state)
+    response = client.post(
+        '/student/assignments',
+        headers=h_student_1,
+        json={
+            'content': 'Test data from Areeb'
+        }
+    )
+    assert response.status_code == 200
+    assignment_id = response.json['data']['id']
+
+    # Submit the assignment (SUBMITTED state) using assignment_id
     response = client.post(
         '/student/assignments/submit',
         headers=h_student_1,
         json={
-            'id': 2,
+            'id': assignment_id,
             'teacher_id': 2
         })
 
